@@ -1,7 +1,7 @@
 <?php
-include('connection.php');
-
+include('server.php');
 ?>
+
 <html>
 <head>
 	<title>Assignment</title>
@@ -17,6 +17,7 @@ include('connection.php');
 <div class="log_in">
 	<div class="login"><a href="login.php">Login</a></div>
 	<div class="register"><a href="register.php">Signup</a></div>
+	<div class="register"><a href="logout.php">Logout</a></div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
