@@ -11,7 +11,18 @@ $row_session_se = $results_login_se->fetch_assoc();
   $user_session_se = $row_session_se['username'];
 
      $_SESSION['username'] = $user_session_se;
+
+$sql_redirec = "SELECT * FROM profile WHERE username = '$user_session_se'";
+  $result_redirec = $conn->query($sql_redirec);
+
+  $row_redirec = $result_redirec->fetch_assoc();
+
+  if(isset($row_redirec['branch']) and isset($row_redirec['interest']) and isset($row_redirec['profile_pic']) and isset($row_redirec['cover_pic'])){
+      header('location: profile.php');
+    }
+    else{
       header('location: complete_profile.php');
+    }
   }
  ?>
 
