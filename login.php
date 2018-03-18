@@ -1,6 +1,11 @@
 <?php
  require('server.php'); 
 
+
+    if(isset($_SESSION['username'])){
+        header('location: profile.php'); 
+    }
+
  if(isset($_COOKIE['sessionid'])){
     $id_sess = $_COOKIE['sessionid'];
    $sql_query_se =  "SELECT username FROM Cookie WHERE cook_id = '$id_sess'";

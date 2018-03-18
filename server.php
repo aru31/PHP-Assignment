@@ -130,6 +130,7 @@ $results_login = $conn->query($sql_query);
         setcookie("sessionid",$id_session, time() + (86400 * 30),$domain,false);
     }
 
+
  $result_pro = $conn->query("INSERT INTO profile(username) 
            VALUES ('$user_log')");
 
