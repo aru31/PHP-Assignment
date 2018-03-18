@@ -16,7 +16,7 @@ $user_feedp = $_SESSION['username'];
 
 		$row_feed = $sql_feed->fetch_assoc();
 
-		if($row_feed['branch'] === "" or $row_feed['interest'] ==="" or $row_feed['profile_pic'] === "" ){
+		if(($row_feed['branch'] == 1000) or ($row_feed['interest'] == 1000) or ($row_feed['profile_pic'] == 1000) or ($row_feed['cover_pic'] == 1000)){
 			echo "Please Complete Profile to View all your posts";
 		}
 		else{

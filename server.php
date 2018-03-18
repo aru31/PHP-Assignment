@@ -101,7 +101,7 @@ else{
 
 if(isset($_POST["log_page"])){
 
-$user_log = trim(filter_input(INPUT_POST, "username1",FILTER_SANITIZE_STRING));
+$user_log = $_POST['username1'];
 $password = $_POST["password"];
 $password_enc = md5($password);
 
@@ -139,12 +139,12 @@ $results_login = $conn->query($sql_query);
 
   $row_redirec = $result_redirec->fetch_assoc();
 
-  if(isset($row_redirec['branch']) and isset($row_redirec['interest']) and isset($row_redirec['profile_pic']) and isset($row_redirec['cover_pic'])){
-      header('location: profile.php');
-    }
-    else{
-      header('location: complete_profile.php');
-    }
+  if(isset($row_redirec['branch']) and isset($row_redirec['interest']) and isset($row_redirec['profile_pic']) and isset($row_redirec['cover_pic']) and ($row_redirec['branch'] != 1000) and ($row_redirec['interest'] != 1000) and ($row_redirec['profile_pic'] != 1000) and ($row_redirec['cover_pic'] != 1000)){
+     header('location: profile.php'); 
+  }
+ else{
+   header('location: complete_profile.php'); 
+  }
   
     }
       else{
