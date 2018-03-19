@@ -11,6 +11,7 @@ if(!isset($_SESSION['username'])){
 ?>
 
 <?php
+
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
 		$branch = ($_POST["branch"]);
 		$interests = ($_POST["interest"]);
@@ -127,6 +128,17 @@ if(!isset($_SESSION['username'])){
 
 ?>
 
+<?php
+   $user_me = $_SESSION['username'];
+    $sql_values = "SELECT * FROM profile where username = '$user_me'";
+    $result_value = $conn->query($sql_values);
+    $row_value = $result_value->fetch_assoc();
+    $branch_ = $row_value['branch'];
+    $interest_ = $row_value['interest'];
+    $profile_pic = $row_value['profile_pic'];
+    $cover_pic_ = $row_value['cover_pic'];
+?>
+
 <html>
 <head>
 	<title>Your Info</title>
@@ -138,13 +150,13 @@ if(!isset($_SESSION['username'])){
 <table>
       		 <tr>
             <th><label for="branch">Branch</label></th>
-            <td><input type="text" id="branch" name="branch" /></td>
+            <td><input type="text" id="branch" name="branch" value="<?php echo $branch_; ?>" /></td>
       </tr>
         
 
          <tr>
             <th><label for="interest">Interests</label></th>
-            <td><input type="text" id="interest" name= "interest" /></td>
+            <td><input type="text" id="interest" name= "interest" value="<?php echo $interest_; ?>" /></td>
       </tr>
 
       <tr>

@@ -22,12 +22,6 @@ $row_session_se = $results_login_se->fetch_assoc();
 
   $row_redirec = $result_redirec->fetch_assoc();
 
-  if(isset($row_redirec['branch']) and isset($row_redirec['interest']) and isset($row_redirec['profile_pic']) and isset($row_redirec['cover_pic']) and ($row_redirec['branch'] != 1000) and ($row_redirec['interest'] != 1000) and ($row_redirec['profile_pic'] != 1000) and ($row_redirec['cover_pic'] != 1000)){
-     header('location: profile.php'); 
-  }
- else{
-   header('location: complete_profile.php'); 
-  }
   }
  ?>
 

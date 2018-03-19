@@ -17,7 +17,7 @@ $user_feedp = $_SESSION['username'];
 		$row_feed = $sql_feed->fetch_assoc();
 
 		if(($row_feed['branch'] == 1000) or ($row_feed['interest'] == 1000) or ($row_feed['profile_pic'] == 1000) or ($row_feed['cover_pic'] == 1000)){
-			echo "Please Complete Profile to View all your posts";
+			echo "Please Complete YOUR Profile to View all your posts and post Something here...";
 		}
 		else{
 			/*To show all the common Posts*/
@@ -35,5 +35,7 @@ $user_feedp = $_SESSION['username'];
 			}
 		}
 ?>
-			<a href="logout.php"><button class="button">Logout</button></a><br>
+			<form action="logout.php" method="post">
+	<button class="button" name="but">Logout</button>
+   </form>
 	<a href="profile.php"><button class="button">Back to Profile</button></a>

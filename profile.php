@@ -38,7 +38,6 @@ function test_input($data) {
 	return $data;
 }
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,12 +47,13 @@ function test_input($data) {
 </head>
 <body>
 	<p>Welcome <?php echo $user_profile ?></p>
-
 	
 	<a href="password.php"><button class="button">Update Password</button></a><br>
 	<a href="complete_profile.php"><button class="button">Update Profile</button></a>
-	<a href="logout.php"><button class="button">Logout</button></a>
 
+	<form action="logout.php" method="post">
+	<button class="button" name="but">Logout</button>
+   </form>
 
 	<?php 
 	$sql_fin = $conn->query("SELECT * from Register where username='$user_profile'");
@@ -81,17 +81,31 @@ function test_input($data) {
 
     <tr>
         <th>Branch:</th>
-        <td><?php echo $row_w["branch"]; ?></td>
+        <td><?php 
+                  if($row_w['branch'] == "1000"){
+                 echo "Please fill in Your Branch";
+                 }
+                 else{
+                 	echo $row_w['branch'];
+                 	} 
+                 	?></td>
    </tr>
 
     <tr>
         <th>Interest:</th>
-        <td><?php echo $row_w["interest"]; ?></td>
+        <td><?php if($row_w['interest'] == "1000"){
+                 echo "Please fill in Your info";
+                 }
+                 else{
+                 	echo $row_w['interest'];
+                 	}
+                 	 ?></td>
    </tr>
 
 </table>
 
 	<?php echo "<img src='".$row_w['cover_pic']."' id='cover' alt='cover_pic.' height = '300' width = '300'/>"; 
+	
 	echo "<br>";
 
 	echo "<img src='".$row_w['profile_pic']."' id='profile' alt=' profile_pic.' height = '300' width = '300'/>";
@@ -101,8 +115,15 @@ function test_input($data) {
 
 <form action="" method="post">
 		POST:
-		<input type="text" name="feed_post">
-		<input type="submit" name="submitpost"></input>
+		
+   <?php  
+     if($row_w['cover_pic'] == "1000" or $row_w['profile_pic'] == "1000" or $row_w['branch'] == "1000" or $row_w['interest'] == "1000"){
+     echo "Please Complete your Profile First...To View feed Page";
+		}
+		else{ ?>
+	<input type="text" name="feed_post" placeholder="Feed Posts...">
+<input type="submit" name="submitpost"></input>
+		<?php } ?> 
 		<br>
 	</form>
 
@@ -122,6 +143,10 @@ $user_feed = $_SESSION['username'];
 
   $post= input($_POST['feed_post']);
 
+  if($post == ""){
+  	echo "Please DO Post Something...";
+  }
+  else{
 		$date = date("Y-m-d H:i:s");
 		$sql_feed="INSERT INTO feed(username,post,post_date) VALUES ('$user_feed','$post','$date')";
 		
@@ -133,6 +158,7 @@ $user_feed = $_SESSION['username'];
 		}
 
 		header('location: feed_page.php'); 
+	}
 		}
 		?>
 

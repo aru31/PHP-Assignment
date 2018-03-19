@@ -1,5 +1,7 @@
 <?php
 	include('connection.php');
+
+	if(isset($_POST['but'])){
 	session_start();
 	session_unset();
 	session_destroy();
@@ -10,6 +12,11 @@
 	setcookie("sessionid","", time() - (86400 * 30));
 }
 	echo "You have successfully logged out"."<br>";
+
+}
+else{
+	header('location:profile.php');
+}
 	?>
 	<!DOCTYPE html>
 	<html>
