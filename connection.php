@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 // Enter your root, password
-$password = "Arp31121997";
+$password = "qwertyuiop";
 $db = "pachpee";	
 	$conn = new mysqli($servername, $username, $password, $db);//for connection to databse via php
 	//conn is object And ,mysqli is class
